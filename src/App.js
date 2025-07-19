@@ -1,13 +1,15 @@
 import React from 'react';
-import HeroSection from './components/HeroSection';
-import PartnerLogos from './components/PartnerLogos';
+import Header from './components/Header'; // Capital "H" to match your file name
+import Footer from './components/Footer'; // insert the path here
 
 function App() {
   return (
-    <>
-      <HeroSection />
-      <PartnerLogos />
-    </>
+    <div className="App">
+      <Header />
+      {/* add Main here if needed */}
+      
+      <Footer />  {/*  adds your Footer to the page */}
+    </div>
   );
 }
 
