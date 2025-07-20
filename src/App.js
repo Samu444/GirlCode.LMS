@@ -7,11 +7,10 @@ function App() {
     <div className="App">
       <Header />
       {/* add Main here if needed */}
-      
+
       <Footer />  {/*  adds your Footer to the page */}
     </div>
   );
 }
 
 export default App;
-
