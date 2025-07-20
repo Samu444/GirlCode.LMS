@@ -26,7 +26,7 @@ const HeroSection = () => {
             <p className="stat-label">Students Enrolled</p>
           </div>
           <div className="stat-item">
-            <h2 className="stat-number">18+</h2>
+            <h2 className="stat-number">8+</h2>
             <p className="stat-label">Courses Offered</p>
           </div>
           <div className="stat-item">
