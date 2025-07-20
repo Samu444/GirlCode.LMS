@@ -1,4 +1,6 @@
 import React from 'react';
+import './PartnerLogos.css';
+
 
 const HeroSection = () => {
   return (
