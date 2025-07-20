@@ -1,4 +1,6 @@
 import React from 'react';
+import './HeroSection.css';
+
 
 const HeroSection = () => {
   return (
@@ -13,7 +15,7 @@ const HeroSection = () => {
           <p className="hero-paragraph">
             We are on a mission to empower 10 million women and girls 
             with tech skills by 2030!<br/>  Learn the most in-demand skills 
-            for the jobs of tomorrow with <span className="font-bold text-purple-700">GirlCode</span>.
+            for the jobs of tomorrow with <span className="highlight-pink">GirlCode</span>.
           </p>
           <button className="hero-button">
             Explore Courses
