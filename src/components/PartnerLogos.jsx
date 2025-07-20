@@ -1,5 +1,5 @@
 import React from 'react';
-import './HeroSection.css'; // Make sure this path is correct
+import './HeroSection.css'; 
 
 const logos = [
   '/logos/Accenture.svg.png',

@@ -1,9 +1,8 @@
 .hero-section {
-  /*background: linear-gradient(to right, #fce4ec, #e1bee7);*/
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  height: 60vh;
 }
 
 .hero-content {
@@ -66,7 +65,6 @@
   transition: transform 0.6s ease;
   transform-style: preserve-3d;
   box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
-  animation: float 5s ease-in-out infinite;
 }
 
 .hero-image:hover {
