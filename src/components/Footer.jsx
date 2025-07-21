@@ -1,6 +1,9 @@
 import React from 'react';
 import './Footer.css';
 import { motion } from 'framer-motion';
+import { FaFacebook, FaInstagram, FaTwitter, FaLinkedinIn, FaYoutube } from 'react-icons/fa';
+import { SiTiktok } from 'react-icons/si';
+
 
 function Footer() {
     return (
@@ -10,16 +13,18 @@ function Footer() {
             transition={{ duration: 1.2 }}
             className="footer"
         >
-            <div className="footer-content">
-                <div className="footer-row">
-                    <p>&copy; 2025 GirlCode LMS. All rights reserved.</p>
-                    <div className="social-icons">
-                        <a href="https://web.facebook.com/GirlCodeZA/?_rdc=1&_rdr#" title="Facebook"><i className="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/girlcode_za/" title="Instagram"><i className="fab fa-instagram"></i></a>
-                        <a href="https://x.com/GirlCode_za" title="X"><i className="fab fa-x-twitter"></i></a>
-                        <a href="https://www.linkedin.com/company/girlcodeza/posts/?feedView=all" title="LinkedIn"><i className="fab fa-linkedin-in"></i></a>
-                        <a href="https://www.tiktok.com/@girlcodeza" title="TikTok"><i className="fab fa-tiktok"></i></a>
-                        <a href="https://www.youtube.com/@GirlCodeZA" title="YouTube"><i className="fab fa-youtube"></i></a>
+            <div className="footer-content container-fluid">
+                <div className="footer-row row">
+                    <div className="col-12 col-md-6 d-flex justify-content-center justify-content-md-start">
+                        <p>&copy; {new Date().getFullYear()} GirlCode. All rights reserved.</p>
+                    </div>
+                    <div className="social-icons col-12 col-md-6 d-flex justify-content-center justify-content-md-end">
+                        <a href="https://web.facebook.com/GirlCodeZA/?_rdc=1&_rdr#" aria-label="Facebook"><FaFacebook /></a>
+                        <a href="https://x.com/GirlCode_za" aria-label="Twitter"><FaTwitter /></a>
+                        <a href="https://www.instagram.com/girlcode_za/" aria-label="Instagram"><FaInstagram /></a>
+                        <a href="https://www.linkedin.com/company/girlcodeza/posts/?feedView=all" aria-label="LinkedinIn"><FaLinkedinIn /></a>
+                        <a href="https://www.youtube.com/@GirlCodeZA" aria-label="YouTube"><FaYoutube /></a>
+                        <a href="https://www.tiktok.com/@girlcodeza" arial-label="TikTok"><SiTiktok /></a>
                     </div>
                 </div>
             </div>
