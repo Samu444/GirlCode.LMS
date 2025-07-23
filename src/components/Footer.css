@@ -1,57 +1,53 @@
 .footer {
-    background-color: #f92aad;
-    color: white;
-    padding: 20px 0;
-    font-family: 'Poppins', sans-serif;
+  background-color: #111827; /* Dark background */
+  color: white;
+  padding: 20px 0;
+  font-size: 0.9rem;
 }
 
 .footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.footer-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    text-align: center;
-}
-
-.footer-row p {
-    margin: 0;
-    font-size: 17px;
-    font-weight: bold;
-}
-
-/* Social icons on the right (desktop) */
-.social-icons {
-    display: flex;
-    gap: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .social-icons a {
-    color: black;
-    text-decoration: none;
-    font-size: 22px;
-    transition: color 0.3s ease;
+  color: white;
+  margin: 0 8px;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
 }
 
 .social-icons a:hover {
-    color: white;
+  color: #f2729c;
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-    .footer-row {
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
-    }
+.footer-center {
+  margin-top: 10px;
+}
 
-    .social-icons {
-        justify-content: center;
-        margin-top: 10px;
-    }
+.footer-link {
+  color: white;
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
+
+.company-name {
+  font-weight: bold;
+}
+
+.copyright {
+  margin-top: 10px;
+}
+
+@media (min-width: 768px) {
+  .footer-center,
+  .copyright {
+    margin-top: 0;
+  }
 }

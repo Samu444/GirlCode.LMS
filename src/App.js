@@ -1,17 +1,21 @@
 import React from 'react';
-import Header from './components/Header'; // Capital "H" to match your file name
-import Footer from './components/Footer'; // insert the path here
-import HeroSection from './components/HeroSection'; // insert the path here
-import PartnerLogos from './components/PartnerLogos';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import Features from './components/Features';
+import CTA from './components/CTA';
+import Footer from './components/Footer';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <div className="App">
+    <>
       <Header />
-      <HeroSection />
-      <PartnerLogos />
+      <Hero />
+      <Features />
+      <CTA />
       <Footer />
-    </div>
+    </>
   );
 }
+
 export default App;

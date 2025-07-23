@@ -1,20 +1,21 @@
-import React from "react";
-import Header from "./components/Header";
-import HeroSection from "./components/HeroSection";
-import Footer from "./components/Footer";
-import PartnerLogos from './components/PartnerLogos';
+import React from 'react';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import Features from './components/Features';
+import CTA from './components/CTA';
+import Footer from './components/Footer';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
     <>
       <Header />
-      <HeroSection />
-      <PartnerLogos />
+      <Hero />
+      <Features />
+      <CTA />
       <Footer />
     </>
   );
 }
 
 export default App;
-
-

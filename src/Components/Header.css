@@ -1,92 +1,23 @@
-/* Header.css */
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 25px 60px;
-  background-color: white;
-  font-family: 'Nunito', sans-serif;
-  height: 5vh;
-  ;
+.navbar {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 1rem 2rem;
 }
 
-.logo img {
-  height: 80px;
-}
-
-.nav-links {
-  display: flex;
-  gap: 30px;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  font-size: 16px;
-}
-
-.auth-buttons {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-}
-
-.signup-button {
-  background-color: #f92aad;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 999px;
+.navbar .navbar-brand {
   font-weight: bold;
-  font-size: 14px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
+  font-size: 1.5rem;
 }
 
-.signup-button:hover {
-  background-color: #d81b8e;
+.navbar-nav .nav-link {
+  color: white !important;
+  margin-left: 1rem;
 }
 
-.login-button {
-  color: #f92aad;
-  font-weight: 600;
-  text-decoration: none;
-  font-size: 14px;
+.navbar-nav .nav-link:hover {
+  color: #f2729c !important;
 }
 
-/* Responsive Adjustments for Smaller Screens */
-@media (max-width: 768px) {
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 20px;
-    height: auto;
-  }
-
-  .logo img {
-    height: 60px;
-  }
-
-  .nav-links {
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    gap: 15px;
-    margin-top: 10px;
-  }
-
-  .auth-buttons {
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    gap: 10px;
-    margin-top: 15px;
-  }
-
-  .signup-button,
-  .login-button {
-    font-size: 13px;
-    padding: 8px 16px;
-  }
+.logo-img {
+  width: 150px;
+  height: auto;
 }
