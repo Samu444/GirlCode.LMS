@@ -6,6 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import LandingPage from './pages/LandingPage';
+import PrivacyPolicy from './components/PrivacyPolicy';
+
 
 function App() {
   return (
@@ -15,6 +17,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       </Routes>
       <Footer />
     </Router>
