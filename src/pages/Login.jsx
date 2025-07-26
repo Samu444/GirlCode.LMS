@@ -1,11 +1,10 @@
 import React from 'react';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 import { FaGoogle } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
-function SignUp() {
+function Login() {
   const [formData, setFormData] = React.useState({
-    firstName: '',
-    lastName: '',
     email: '',
     password: '',
     rememberMe: false
@@ -21,51 +20,23 @@ function SignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Add your form submission logic here
+    console.log('Login form submitted:', formData);
+    // Add your login logic here
   };
 
-  const handleGoogleSignUp = () => {
-    console.log('Google sign-up clicked');
+  const handleGoogleLogin = () => {
+    console.log('Google login clicked');
     // Add Google authentication logic here
   };
 
   return (
-
-    <Container className="signup-page py-5">
+    <Container className="login-page py-5">
       <Row className="justify-content-center">
         <Col xs={12} md={8} lg={6}>
           <div className="p-4 shadow-sm rounded bg-white">
-            <h2 className="text-center mb-4">Sign Up</h2>
+            <h2 className="text-center mb-4">Login</h2>
             
             <Form onSubmit={handleSubmit}>
-              <Row>
-                <Col md={6}>
-                  <Form.Group className="mb-3">
-                    <Form.Label>First Name</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="firstName"
-                      value={formData.firstName}
-                      onChange={handleChange}
-                      required
-                    />
-                  </Form.Group>
-                </Col>
-                <Col md={6}>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Last Name</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleChange}
-                      required
-                    />
-                  </Form.Group>
-                </Col>
-              </Row>
-
               <Form.Group className="mb-3">
                 <Form.Label>Email</Form.Label>
                 <Form.Control
@@ -88,30 +59,42 @@ function SignUp() {
                 />
               </Form.Group>
 
-              <Form.Group className="mb-3">
-                <Form.Check
-                  type="checkbox"
-                  label="Remember me"
-                  name="rememberMe"
-                  checked={formData.rememberMe}
-                  onChange={handleChange}
-                />
-              </Form.Group>
+              <div className="d-flex justify-content-between mb-3">
+                <Form.Group>
+                  <Form.Check
+                    type="checkbox"
+                    label="Remember me"
+                    name="rememberMe"
+                    checked={formData.rememberMe}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+                <Link to="/forgot-password" className="text-decoration-none">
+                  Forgot password?
+                </Link>
+              </div>
 
               <Button variant="primary" type="submit" className="w-100 mb-3">
-                Submit
+                Login
               </Button>
 
               <div className="text-center mb-3">OR</div>
 
               <Button 
                 variant="outline-danger" 
-                className="w-100 d-flex align-items-center justify-content-center"
-                onClick={handleGoogleSignUp}
+                className="w-100 d-flex align-items-center justify-content-center mb-3"
+                onClick={handleGoogleLogin}
               >
                 <FaGoogle className="me-2" />
-                Sign-up with Google
+                Login with Google
               </Button>
+
+              <div className="text-center">
+                Don't have an account?{' '}
+                <Link to="/signup" className="text-decoration-none">
+                  Sign up
+                </Link>
+              </div>
             </Form>
           </div>
         </Col>
@@ -120,4 +103,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default Login;

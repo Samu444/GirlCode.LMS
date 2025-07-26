@@ -1,20 +1,23 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
-import Hero from './components/Hero';
-import Features from './components/Features';
-import CTA from './components/CTA';
 import Footer from './components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import SignUp from './pages/SignUp';
+import Login from './pages/Login';
+import LandingPage from './pages/LandingPage';
 
 function App() {
   return (
-    <>
+    <Router>
       <Header />
-      <Hero />
-      <Features />
-      <CTA />
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+      </Routes>
       <Footer />
-    </>
+    </Router>
   );
 }
 
