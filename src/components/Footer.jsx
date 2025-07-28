@@ -16,7 +16,7 @@ function Footer() {
         <div className="row align-items-center footer-content">
           {/* Left: Copyright */}
           <div className="col-12 col-md-4 text-md-start text-center copyright">
-            &copy; {new Date().getFullYear()} All rights reserved
+            &copy; {new Date().getFullYear()} LMS Pro, All rights reserved
           </div>
 
           {/* Center: Privacy + Company */}
