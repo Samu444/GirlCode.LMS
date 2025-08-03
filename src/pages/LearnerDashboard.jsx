@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useAuth } from '../context/AuthContext';
+/*import { useAuth } from '../context/AuthContext';*/
 import { auth } from '../firebase';
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
+import { useAuth } from '../context/AuthContext';
 
 const LearnerDashboard = () => {
   const { currentUser } = useAuth();

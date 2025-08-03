@@ -1,0 +1,38 @@
+.facilitator-dashboard {
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar .nav-link {
+  padding: 0.75rem 1rem;
+  font-weight: 500;
+}
+
+.main-content {
+  margin-left: 250px;
+  padding: 1rem;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+}

@@ -1,117 +1,139 @@
-import { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
-import { auth, db } from "../firebase";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
+import { useNavigate, Link } from 'react-router-dom';
+import { auth, db } from '../firebase';  // Make sure this is imported!
+import './Signup.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-const SignUp = ({ onClose }) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    role: "learner" // Default role
-  });
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+
+const SignupForm = () => {
+  const [role, setRole] = useState('Learner');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+  const handleRoleChange = (newRole) => {
+    setRole(newRole);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError("");
+    setError('');
 
     try {
-      // 1. Create auth user
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        formData.email,
-        formData.password
-      );
-      
-      // 2. Store additional user data in Firestore
-      await setDoc(doc(db, "users", userCredential.user.uid), {
-        name: formData.name,
-        email: formData.email,
-        role: formData.role,
-        createdAt: new Date(),
+      // Create user with email & password
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // Save additional user data (name and role) in Firestore
+      await setDoc(doc(db, 'users', user.uid), {
+        uid: user.uid,
+        name: name,
+        email: email,
+        role: role,
+        createdAt: new Date().toISOString(),
       });
 
-      onClose();
-      navigate("/learner-dashboard");
+      // Redirect based on role
+      if (role === 'Learner') navigate('/learner-dashboard');
+      else if (role === 'Facilitator') navigate('/facilitator-dashboard');
+      else if (role === 'Admin') navigate('/admin-dashboard');
+      else navigate('/');
     } catch (err) {
+      console.error('Signup error:', err.message);
       setError(err.message);
-      console.error("Signup error:", err);
-    } finally {
-      setLoading(false);
     }
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-6 w-full max-w-md">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold">Create Account</h2>
-          <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
-            ✕
-          </button>
+    <div className="signup-container d-flex justify-content-center align-items-center">
+      <div className="card p-4 signup-card">
+        <h2 className="text-center mb-2">Sign-Up To Get Started</h2>
+        <p className="text-center text-muted mb-4">Select your role</p>
+
+        <div className="btn-group d-flex mb-3" role="group">
+          {['Learner', 'Facilitator', 'Admin'].map((r) => (
+            <button
+              key={r}
+              type="button"
+              className={`btn ${role === r ? 'btn-primary' : 'btn-outline-primary'}`}
+              onClick={() => handleRoleChange(r)}
+            >
+              {r}
+            </button>
+          ))}
         </div>
-        
-        {error && <div className="mb-4 text-red-500 text-sm">{error}</div>}
-        
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Full Name</label>
+
+        <button className="btn btn-light border w-100 mb-3" disabled>
+          <img
+            src="https://img.icons8.com/color/16/000000/google-logo.png"
+            alt="Google logo"
+            className="me-2"
+          />
+          Sign up with Google (Coming Soon)
+        </button>
+
+        {error && (
+          <div className="alert alert-danger py-2" role="alert">
+            {error}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label htmlFor="name" className="form-label">Full Name</label>
             <input
               type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+              className="form-control"
+              id="name"
+              placeholder="Your name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               required
             />
           </div>
-          
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Email</label>
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">Email address</label>
             <input
               type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+              className="form-control"
+              id="email"
+              placeholder="email@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
-          
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Password</label>
+          <div className="mb-3">
+            <label htmlFor="password" className="form-label">Password</label>
             <input
               type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
-              minLength="6"
+              className="form-control"
+              id="password"
+              placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
+              minLength={6}
             />
           </div>
-          
-          <button
-            type="submit"
-            disabled={loading}
-            className={`w-full py-2 px-4 bg-blue-600 text-white font-medium rounded-md shadow-sm ${loading ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-700"}`}
-          >
-            {loading ? "Creating account..." : "Sign Up"}
+          <button type="submit" className="btn btn-primary w-100">
+            Create {role.toLowerCase()} account
           </button>
         </form>
+
+        <p className="text-center mt-3">
+          Already have an account?{' '}
+          <Link to="/login" className="text-decoration-none">
+            Log in
+          </Link>
+        </p>
       </div>
     </div>
   );
 };
 
-export default SignUp;
+export default SignupForm;
