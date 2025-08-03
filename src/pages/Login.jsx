@@ -9,6 +9,7 @@ import {
 } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../firebase";
+import './Login.css';
 
 function Login() {
   const [formData, setFormData] = useState({
