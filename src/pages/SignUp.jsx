@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { 
+  createUserWithEmailAndPassword, 
+  sendEmailVerification 
+} from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { useNavigate, Link } from 'react-router-dom';
-import { auth, db } from '../firebase';  // Make sure this is imported!
+import { auth, db } from '../firebase';  // Make sure this is correctly configured!
 import './Signup.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 
 const SignupForm = () => {
   const [role, setRole] = useState('Learner');
@@ -13,6 +15,7 @@ const SignupForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [info, setInfo] = useState(''); // Info message for email verification
   const navigate = useNavigate();
 
   const handleRoleChange = (newRole) => {
@@ -22,6 +25,7 @@ const SignupForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setInfo('');
 
     try {
       // Create user with email & password
@@ -37,11 +41,18 @@ const SignupForm = () => {
         createdAt: new Date().toISOString(),
       });
 
+      // Send verification email
+      await sendEmailVerification(user);
+
+      // Notify user to check email
+      setInfo('A verification email has been sent to your email address. Please check your inbox.');
+
       // Redirect based on role
       if (role === 'Learner') navigate('/learner-dashboard');
       else if (role === 'Facilitator') navigate('/facilitator-dashboard');
       else if (role === 'Admin') navigate('/admin-dashboard');
       else navigate('/');
+
     } catch (err) {
       console.error('Signup error:', err.message);
       setError(err.message);
@@ -67,18 +78,24 @@ const SignupForm = () => {
           ))}
         </div>
 
-        <button className="btn btn-light border w-100 mb-3" disabled>
+        <button className="btn btn-light border w-100 mb-3">
           <img
             src="https://img.icons8.com/color/16/000000/google-logo.png"
             alt="Google logo"
             className="me-2"
           />
-          Sign up with Google (Coming Soon)
+          Sign up with Google
         </button>
 
         {error && (
           <div className="alert alert-danger py-2" role="alert">
             {error}
+          </div>
+        )}
+
+        {info && (
+          <div className="alert alert-info py-2" role="alert">
+            {info}
           </div>
         )}
 
